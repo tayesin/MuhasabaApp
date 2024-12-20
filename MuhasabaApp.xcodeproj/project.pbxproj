@@ -7,13 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F30E9F32D15171D007F4708 /* MuhasabaAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30E9F22D15171D007F4708 /* MuhasabaAppApp.swift */; };
-		0F30E9F52D15171D007F4708 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30E9F42D15171D007F4708 /* ContentView.swift */; };
+		0F30E9F32D15171D007F4708 /* MuhasabaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30E9F22D15171D007F4708 /* MuhasabaApp.swift */; };
 		0F30E9F72D151720007F4708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F30E9F62D151720007F4708 /* Assets.xcassets */; };
 		0F30E9FA2D151720007F4708 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F30E9F92D151720007F4708 /* Preview Assets.xcassets */; };
 		0F30EA042D151720007F4708 /* MuhasabaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA032D151720007F4708 /* MuhasabaAppTests.swift */; };
 		0F30EA0E2D151720007F4708 /* MuhasabaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA0D2D151720007F4708 /* MuhasabaAppUITests.swift */; };
 		0F30EA102D151720007F4708 /* MuhasabaAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA0F2D151720007F4708 /* MuhasabaAppUITestsLaunchTests.swift */; };
+		0F30EA222D1517BB007F4708 /* Kadwa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F30EA1D2D1517BB007F4708 /* Kadwa-Bold.ttf */; };
+		0F30EA232D1517BB007F4708 /* Habibi-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F30EA1E2D1517BB007F4708 /* Habibi-Regular.ttf */; };
+		0F30EA242D1517BB007F4708 /* Heebo-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F30EA1F2D1517BB007F4708 /* Heebo-VariableFont_wght.ttf */; };
+		0F30EA252D1517BB007F4708 /* Kitab-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F30EA202D1517BB007F4708 /* Kitab-Regular.ttf */; };
+		0F30EA262D1517BB007F4708 /* Kadwa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F30EA212D1517BB007F4708 /* Kadwa-Regular.ttf */; };
+		0F30EA2A2D1518F9007F4708 /* TitlePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA292D1518F9007F4708 /* TitlePageView.swift */; };
+		0F30EA2C2D15191E007F4708 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA2B2D15191E007F4708 /* MainPageView.swift */; };
+		0F30EA2E2D151939007F4708 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA2D2D151939007F4708 /* ViewModel.swift */; };
+		0F30EA302D151954007F4708 /* MathuratCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA2F2D151954007F4708 /* MathuratCardView.swift */; };
+		0F30EA322D151967007F4708 /* MathuratPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA312D151967007F4708 /* MathuratPageView.swift */; };
+		0F30EA342D151993007F4708 /* myColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA332D151993007F4708 /* myColors.swift */; };
+		0F30EA362D1519A6007F4708 /* TablePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA352D1519A6007F4708 /* TablePageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +46,7 @@
 
 /* Begin PBXFileReference section */
 		0F30E9EF2D15171D007F4708 /* MuhasabaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuhasabaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F30E9F22D15171D007F4708 /* MuhasabaAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhasabaAppApp.swift; sourceTree = "<group>"; };
-		0F30E9F42D15171D007F4708 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0F30E9F22D15171D007F4708 /* MuhasabaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhasabaApp.swift; sourceTree = "<group>"; };
 		0F30E9F62D151720007F4708 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F30E9F92D151720007F4708 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0F30E9FF2D151720007F4708 /* MuhasabaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuhasabaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +54,19 @@
 		0F30EA092D151720007F4708 /* MuhasabaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuhasabaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F30EA0D2D151720007F4708 /* MuhasabaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhasabaAppUITests.swift; sourceTree = "<group>"; };
 		0F30EA0F2D151720007F4708 /* MuhasabaAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhasabaAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0F30EA1D2D1517BB007F4708 /* Kadwa-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kadwa-Bold.ttf"; sourceTree = "<group>"; };
+		0F30EA1E2D1517BB007F4708 /* Habibi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Habibi-Regular.ttf"; sourceTree = "<group>"; };
+		0F30EA1F2D1517BB007F4708 /* Heebo-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Heebo-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		0F30EA202D1517BB007F4708 /* Kitab-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kitab-Regular.ttf"; sourceTree = "<group>"; };
+		0F30EA212D1517BB007F4708 /* Kadwa-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kadwa-Regular.ttf"; sourceTree = "<group>"; };
+		0F30EA272D15184C007F4708 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0F30EA292D1518F9007F4708 /* TitlePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePageView.swift; sourceTree = "<group>"; };
+		0F30EA2B2D15191E007F4708 /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
+		0F30EA2D2D151939007F4708 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		0F30EA2F2D151954007F4708 /* MathuratCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathuratCardView.swift; sourceTree = "<group>"; };
+		0F30EA312D151967007F4708 /* MathuratPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathuratPageView.swift; sourceTree = "<group>"; };
+		0F30EA332D151993007F4708 /* myColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myColors.swift; sourceTree = "<group>"; };
+		0F30EA352D1519A6007F4708 /* TablePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablePageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +117,11 @@
 		0F30E9F12D15171D007F4708 /* MuhasabaApp */ = {
 			isa = PBXGroup;
 			children = (
-				0F30E9F22D15171D007F4708 /* MuhasabaAppApp.swift */,
-				0F30E9F42D15171D007F4708 /* ContentView.swift */,
+				0F30EA272D15184C007F4708 /* Info.plist */,
+				0F30EA1C2D151789007F4708 /* Fonts */,
+				0F30EA282D1518DB007F4708 /* Views */,
+				0F30E9F22D15171D007F4708 /* MuhasabaApp.swift */,
+				0F30EA2D2D151939007F4708 /* ViewModel.swift */,
 				0F30E9F62D151720007F4708 /* Assets.xcassets */,
 				0F30E9F82D151720007F4708 /* Preview Content */,
 			);
@@ -125,6 +151,31 @@
 				0F30EA0F2D151720007F4708 /* MuhasabaAppUITestsLaunchTests.swift */,
 			);
 			path = MuhasabaAppUITests;
+			sourceTree = "<group>";
+		};
+		0F30EA1C2D151789007F4708 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0F30EA1E2D1517BB007F4708 /* Habibi-Regular.ttf */,
+				0F30EA1F2D1517BB007F4708 /* Heebo-VariableFont_wght.ttf */,
+				0F30EA1D2D1517BB007F4708 /* Kadwa-Bold.ttf */,
+				0F30EA212D1517BB007F4708 /* Kadwa-Regular.ttf */,
+				0F30EA202D1517BB007F4708 /* Kitab-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0F30EA282D1518DB007F4708 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0F30EA292D1518F9007F4708 /* TitlePageView.swift */,
+				0F30EA2B2D15191E007F4708 /* MainPageView.swift */,
+				0F30EA2F2D151954007F4708 /* MathuratCardView.swift */,
+				0F30EA312D151967007F4708 /* MathuratPageView.swift */,
+				0F30EA332D151993007F4708 /* myColors.swift */,
+				0F30EA352D1519A6007F4708 /* TablePageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +282,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F30EA262D1517BB007F4708 /* Kadwa-Regular.ttf in Resources */,
+				0F30EA232D1517BB007F4708 /* Habibi-Regular.ttf in Resources */,
+				0F30EA252D1517BB007F4708 /* Kitab-Regular.ttf in Resources */,
+				0F30EA242D1517BB007F4708 /* Heebo-VariableFont_wght.ttf in Resources */,
+				0F30EA222D1517BB007F4708 /* Kadwa-Bold.ttf in Resources */,
 				0F30E9FA2D151720007F4708 /* Preview Assets.xcassets in Resources */,
 				0F30E9F72D151720007F4708 /* Assets.xcassets in Resources */,
 			);
@@ -257,8 +313,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F30E9F52D15171D007F4708 /* ContentView.swift in Sources */,
-				0F30E9F32D15171D007F4708 /* MuhasabaAppApp.swift in Sources */,
+				0F30EA2E2D151939007F4708 /* ViewModel.swift in Sources */,
+				0F30EA342D151993007F4708 /* myColors.swift in Sources */,
+				0F30EA322D151967007F4708 /* MathuratPageView.swift in Sources */,
+				0F30EA302D151954007F4708 /* MathuratCardView.swift in Sources */,
+				0F30EA362D1519A6007F4708 /* TablePageView.swift in Sources */,
+				0F30EA2A2D1518F9007F4708 /* TitlePageView.swift in Sources */,
+				0F30EA2C2D15191E007F4708 /* MainPageView.swift in Sources */,
+				0F30E9F32D15171D007F4708 /* MuhasabaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +487,7 @@
 				DEVELOPMENT_TEAM = L685523BL9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MuhasabaApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -454,6 +517,7 @@
 				DEVELOPMENT_TEAM = L685523BL9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MuhasabaApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

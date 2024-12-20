@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct MuhasabaAppApp: App {
+struct MuhasabaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TitlePage()
         }
     }
 }
