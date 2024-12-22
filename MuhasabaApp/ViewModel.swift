@@ -135,8 +135,9 @@ class MathuratCardData: Identifiable {
     var nightText: String
     var nightTranslation: String
     var hasNight: Bool
+    var count: Int
     
-    init(title: String = "", arabicText: String = "", transliteration: String = "", translation: String = "", nightText: String = "", nightTranslation: String = "", hasNight: Bool = false, showTransliteration: Bool = false, showTranslation: Bool = false, notes: String = "") {
+    init(title: String = "", arabicText: String = "", transliteration: String = "", translation: String = "", nightText: String = "", nightTranslation: String = "", hasNight: Bool = false, showTransliteration: Bool = false, showTranslation: Bool = false, notes: String = "", count: Int = 3) {
         self.title = title
         self.arabicText = arabicText
         self.transliteration = transliteration
@@ -147,6 +148,7 @@ class MathuratCardData: Identifiable {
         self.showTranslation = showTranslation
         self.notes = notes
         self.nightTranslation = nightTranslation
+        self.count = count
     }
     
     var showTransliteration = false

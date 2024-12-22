@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0866C02D17ACC3008E48DA /* TasbeehPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0866BF2D17ACC3008E48DA /* TasbeehPageView.swift */; };
 		0F30E9F32D15171D007F4708 /* MuhasabaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30E9F22D15171D007F4708 /* MuhasabaApp.swift */; };
 		0F30E9F72D151720007F4708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F30E9F62D151720007F4708 /* Assets.xcassets */; };
 		0F30E9FA2D151720007F4708 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F30E9F92D151720007F4708 /* Preview Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F0866BF2D17ACC3008E48DA /* TasbeehPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasbeehPageView.swift; sourceTree = "<group>"; };
 		0F30E9EF2D15171D007F4708 /* MuhasabaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuhasabaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F30E9F22D15171D007F4708 /* MuhasabaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhasabaApp.swift; sourceTree = "<group>"; };
 		0F30E9F62D151720007F4708 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				0F30EA312D151967007F4708 /* MathuratPageView.swift */,
 				0F30EA332D151993007F4708 /* myColors.swift */,
 				0F30EA352D1519A6007F4708 /* TablePageView.swift */,
+				0F0866BF2D17ACC3008E48DA /* TasbeehPageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				0F30EA2A2D1518F9007F4708 /* TitlePageView.swift in Sources */,
 				0F30EA2C2D15191E007F4708 /* MainPageView.swift in Sources */,
 				0F30E9F32D15171D007F4708 /* MuhasabaApp.swift in Sources */,
+				0F0866C02D17ACC3008E48DA /* TasbeehPageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,36 +12,50 @@ struct MathuratPage: View {
     @State var infoScreen = false
     @State var showTransliteration = false
     @State var showTranslation = true
+    @State var tasbeehMode = false
     @Environment(ViewModel.self) private var viewModel
     
 
     var body: some View {
         ZStack {
             NavigationStack {
+                if (tasbeehMode) {
+                    TasbeehPageView()
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                Button(action: {
+                                    tasbeehMode = false}) {
+                                        Image(systemName: "xmark")
+                                            .tint(Color.black)
+                                            .padding()
+                                    }
+                            }
+                        }
+                } else {
                     ScrollView {
                         Text("Al Mathurat")
                             .font(
                                 Font.custom("Kadwa", size: 35)
-                            .weight(.bold))
+                                    .weight(.bold))
                             .padding()
                             .toolbar {
-                                ToolbarItem(placement: .topBarLeading) {
-                                    Button(action: {
-                                        sidebarShowing.toggle()}) {
-                                            Image(systemName:
-                                                "text.justify")
-                                                .tint(Color.black)
-                                                .padding()
-                                        }
-                                }
                                 ToolbarItem(placement: .topBarTrailing) {
                                     Button(action: {
+                                        tasbeehMode = true}) {
+                                            Image(systemName:
+                                                    "play")
+                                            .tint(Color.black)
+                                            .padding()
+                                        }
+                                }
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button(action: {
                                         infoScreen.toggle()}) {
-                                            Image(systemName: "info.circle")
-                                                    .tint(Color.black)
-                                                    .padding()
+                                            Image(systemName: "text.justify")
+                                                .tint(Color.black)
+                                                .padding()
                                         }.sheet(isPresented: $infoScreen) {
-                                            sheetView()}
+                                            SidebarPage(userSettings: viewModel.userSettings)}
                                 }
                             }
                         ForEach(viewModel.mathuratcards, id: \.id) {card in
@@ -50,18 +64,19 @@ struct MathuratPage: View {
                                 .padding(.bottom)
                         }
                     }
-            }
-            dimmedScreen(sidebarshowing: $sidebarShowing)
-            GeometryReader {_ in
-                ZStack {
-                    NavigationStack {
-                        SidebarPage(userSettings: viewModel.userSettings)
-                    }
                 }
-                .ignoresSafeArea()
-                .frame(width: UIScreen.main.bounds.width * 0.7)
-                .offset(x: sidebarShowing ? 0 : -UIScreen.main.bounds.width)
-                .animation(.smooth, value: sidebarShowing)
+//                dimmedScreen(sidebarshowing: $sidebarShowing)
+//                GeometryReader {_ in
+//                    ZStack {
+//                        NavigationStack {
+//                            SidebarPage(userSettings: viewModel.userSettings)
+//                        }
+//                    }
+//                    .ignoresSafeArea()
+//                    .frame(width: UIScreen.main.bounds.width * 0.7)
+//                    .offset(x: sidebarShowing ? 0 : -UIScreen.main.bounds.width)
+//                    .animation(.smooth, value: sidebarShowing)
+//                }
             }
         }
     }
@@ -87,16 +102,20 @@ struct SidebarPage: View {
     
     var body: some View {
         ZStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .center) {
+                Text("Settings")
+                    .font(.largeTitle)
+                    .padding(.top, 40)
                 Toggle("Show transliteration", isOn: $userSettings.showTransliteration)
                     .padding()
                 Toggle("Show translation", isOn: $userSettings.showTranslation)
                     .padding()
                 Toggle("Night duas", isOn: $userSettings.isNight)
                     .padding()
+                Spacer()
             }
         }
-        .navigationTitle("Settings")
+//        .navigationTitle("Settings")
 
     }
 }
