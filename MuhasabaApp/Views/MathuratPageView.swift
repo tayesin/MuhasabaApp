@@ -20,17 +20,19 @@ struct MathuratPage: View {
         ZStack {
             NavigationStack {
                 if (tasbeehMode) {
-                    TasbeehPageView()
-                        .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                Button(action: {
-                                    tasbeehMode = false}) {
-                                        Image(systemName: "xmark")
-                                            .tint(Color.black)
-                                            .padding()
-                                    }
-                            }
-                        }
+//                    ScrollView {
+                        TasbeehPageView()
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button(action: {
+                                        tasbeehMode = false}) {
+                                            Image(systemName: "xmark")
+                                                .tint(Color.black)
+                                                .padding()
+                                        }
+                                }
+//                            }
+                    }
                 } else {
                     ScrollView {
                         Text("Al Mathurat")
@@ -113,6 +115,7 @@ struct SidebarPage: View {
                 Toggle("Night duas", isOn: $userSettings.isNight)
                     .padding()
                 Spacer()
+                
             }
         }
 //        .navigationTitle("Settings")
