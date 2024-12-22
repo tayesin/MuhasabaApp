@@ -12,13 +12,13 @@ struct MainPage: View {
     var body: some View {
         TabView {
             
-            Text("Coming Soon")
-//            TablePage()
-//                .environment(view)
-//                .tabItem {
-//                    Image(systemName: "tablecells")
-//                    Text("Muhasaba Table")
-//                }
+//            Text("Coming Soon")
+            TablePage()
+                .environment(view)
+                .tabItem {
+                    Image(systemName: "tablecells")
+                    Text("Muhasaba Table")
+                }
 //            
             MathuratPage()
                 .environment(view)

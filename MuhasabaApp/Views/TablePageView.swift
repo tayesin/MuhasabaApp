@@ -22,7 +22,9 @@ struct TablePage: View {
                     }
                 }
                 .pickerStyle(.segmented)
+                .fixedSize()
                 .padding()
+//                Spacer()
                 TableView(chooser: timeRange)
                 Spacer()
             }
@@ -67,18 +69,25 @@ struct WeekView: View {
 struct ProgressBar: View {
     @Binding var percentage: Float
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Rectangle()
-                    .offset(x: geometry.size.width * 0.1)
-                    .fill(.gray)
-                    .frame(width: geometry.size.width, height: geometry.size.height * 0.05)
-                Rectangle()
-                    .fill(.blue)
-                    .frame(width: geometry.size.width * CGFloat(percentage), height: geometry.size.height * 0.05)
-                    .padding(.horizontal)
+        VStack(/*alignment: .leading, spacing: 7*/) {
+            HStack {
+                Text("\(Int(percentage * 100))% completed").bold().font(.callout)
+                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.blue, .cyan]), startPoint: .leading, endPoint: .trailing))
+                    .padding(.leading, 50)
+                Spacer()
+            }
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                    .frame(width: 300, height: 12)
+                    .foregroundStyle(Color(myColors().AliceBlue))
+                RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                    .frame(width: 300 * CGFloat(percentage), height: 12, alignment: .center)
+                    .foregroundStyle(Color(myColors().UCLABlue))
             }
         }
+        .padding(20)
+        .background(.white, in: .rect(cornerRadius: 16))
+        .shadow(color: .black.opacity(0.1), radius: 20, x: 0.0, y: 0.0)
     }
 }
 
