@@ -12,12 +12,8 @@ struct TasbeehPageView: View {
     
     lazy var texts = viewModel.mathuratcards
     
-    // 1. Your list of texts
-//    let texts: [String] = ["Text 1", "Text 2", "Text 3"]
-    
-    // 2. State variables to track current text index and the counter
     @State private var currentIndex: Int = 0
-    @State private var counter: Int = 3  // or whatever starting value you want
+    @State private var counter: Int = 3
     
     var body: some View {
         ZStack {
@@ -33,17 +29,6 @@ struct TasbeehPageView: View {
                     .font(.title)
                     .padding()
                 
-                // Button to decrement the counter
-                //            Button(action: {
-                //                handleTap()
-                //            }) {
-                //                Text("Tap to Decrement")
-                //                    .font(.headline)
-                //                    .padding()
-                //                    .background(Color.blue)
-                //                    .foregroundColor(.white)
-                //                    .cornerRadius(8)
-                //            }
             }
         }
         .navigationTitle("")

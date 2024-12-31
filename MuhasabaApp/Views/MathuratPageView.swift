@@ -20,7 +20,6 @@ struct MathuratPage: View {
         ZStack {
             NavigationStack {
                 if (tasbeehMode) {
-//                    ScrollView {
                         TasbeehPageView()
                             .toolbar {
                                 ToolbarItem(placement: .topBarLeading) {
@@ -31,41 +30,37 @@ struct MathuratPage: View {
                                                 .padding()
                                         }
                                 }
-//                            }
                     }
                 } else {
-                    ScrollView {
-                        Text("Al Mathurat")
-                            .font(
-                                Font.custom("Kadwa", size: 35)
-                                    .weight(.bold))
-                            .padding()
-                            .toolbar {
-                                ToolbarItem(placement: .topBarTrailing) {
-                                    Button(action: {
-                                        tasbeehMode = true}) {
-                                            Image(systemName:
-                                                    "play")
-                                            .tint(Color.black)
-                                            .padding()
-                                        }
-                                }
-                                ToolbarItem(placement: .topBarLeading) {
-                                    Button(action: {
-                                        infoScreen.toggle()}) {
-                                            Image(systemName: "text.justify")
-                                                .tint(Color.black)
-                                                .padding()
-                                        }.sheet(isPresented: $infoScreen) {
-                                            SidebarPage(userSettings: viewModel.userSettings)}
+                    cardView(showTransliteration: $showTransliteration, showTranslation: $showTranslation, tasbeehMode: $tasbeehMode)
+                        .toolbar {
+//                            ToolbarItem(placement: .topBarTrailing) {
+//                                Button(action: {
+//                                    tasbeehMode = true}) {
+//                                        Image(systemName:
+//                                                "play")
+//                                        .tint(Color.black)
+//                                        .padding()
+//                                    }
+//                            }
+                            ToolbarItem(placement: .topBarTrailing) {
+                                HStack {
+                                    NavigationLink(destination: TasbeehPageView()) {
+                                        Image(systemName: "play").tint(Color.black)
+                                    }
                                 }
                             }
-                        ForEach(viewModel.mathuratcards, id: \.id) {card in
-                            MathuratCardView(card: card, userSettings: viewModel.userSettings)
-                                .padding(.bottom)
-                                .padding(.bottom)
+                            
+                            ToolbarItem(placement: .topBarLeading) {
+                                Button(action: {
+                                    infoScreen.toggle()}) {
+                                        Image(systemName: "text.justify")
+                                            .tint(Color.black)
+                                            .padding()
+                                    }.sheet(isPresented: $infoScreen) {
+                                        SidebarPage(userSettings: viewModel.userSettings)}
+                            }
                         }
-                    }
                 }
 //                dimmedScreen(sidebarshowing: $sidebarShowing)
 //                GeometryReader {_ in
@@ -79,6 +74,31 @@ struct MathuratPage: View {
 //                    .offset(x: sidebarShowing ? 0 : -UIScreen.main.bounds.width)
 //                    .animation(.smooth, value: sidebarShowing)
 //                }
+            }
+        }
+    }
+}
+
+struct cardView: View {
+    @State var sidebarShowing: Bool = false
+    @State var infoScreen = false
+    @Binding var showTransliteration: Bool
+    @Binding var showTranslation: Bool
+    @Binding var tasbeehMode: Bool
+    @Environment(ViewModel.self) private var viewModel
+    
+    var body: some View {
+        ScrollView {
+            Text("Al Mathurat")
+                .font(
+                    Font.custom("Kadwa", size: 35)
+                        .weight(.bold))
+                .padding()
+                
+            ForEach(viewModel.mathuratcards, id: \.id) {card in
+                MathuratCardView(card: card, userSettings: viewModel.userSettings)
+                    .padding(.bottom)
+                    .padding(.bottom)
             }
         }
     }
