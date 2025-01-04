@@ -48,13 +48,14 @@ struct MathuratCardView: View {
                     if userSettings.showTransliteration {
                         Text(card.transliteration)
                             .font(Font.custom("Heebo", size: 20))
+                            .foregroundStyle(Color("Primaryblack"))
                             .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                             .padding(.bottom)
                     }
                     if userSettings.showTranslation {
                         Text(card.translation)
                             .font(Font.custom("Habibi", size: 15))
-                            .foregroundStyle(Color.black)
+                            .foregroundStyle(Color("Primaryblack"))
                             .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                     }
                 }
@@ -86,7 +87,7 @@ struct MathuratCardView: View {
         }
         .padding()
         .frame(width: 375)
-        .background(myColors().AliceBlue)
+        .background(Color("AliceBlue"))
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(radius: 4, y: 3)
     }

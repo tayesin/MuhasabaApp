@@ -19,34 +19,13 @@ struct MathuratPage: View {
     var body: some View {
         ZStack {
             NavigationStack {
-                if (tasbeehMode) {
-                        TasbeehPageView()
-                            .toolbar {
-                                ToolbarItem(placement: .topBarLeading) {
-                                    Button(action: {
-                                        tasbeehMode = false}) {
-                                            Image(systemName: "xmark")
-                                                .tint(Color.black)
-                                                .padding()
-                                        }
-                                }
-                    }
-                } else {
                     cardView(showTransliteration: $showTransliteration, showTranslation: $showTranslation, tasbeehMode: $tasbeehMode)
                         .toolbar {
-//                            ToolbarItem(placement: .topBarTrailing) {
-//                                Button(action: {
-//                                    tasbeehMode = true}) {
-//                                        Image(systemName:
-//                                                "play")
-//                                        .tint(Color.black)
-//                                        .padding()
-//                                    }
-//                            }
                             ToolbarItem(placement: .topBarTrailing) {
                                 HStack {
-                                    NavigationLink(destination: TasbeehPageView()) {
-                                        Image(systemName: "play").tint(Color.black)
+                                    NavigationLink(destination: TasbeehPageView()
+                                        .toolbar(.hidden, for: .tabBar)) {
+                                        Image(systemName: "play").tint(Color("Primaryblack"))
                                     }
                                 }
                             }
@@ -55,25 +34,12 @@ struct MathuratPage: View {
                                 Button(action: {
                                     infoScreen.toggle()}) {
                                         Image(systemName: "text.justify")
-                                            .tint(Color.black)
+                                            .tint(Color("Primaryblack"))
                                             .padding()
                                     }.sheet(isPresented: $infoScreen) {
                                         SidebarPage(userSettings: viewModel.userSettings)}
                             }
                         }
-                }
-//                dimmedScreen(sidebarshowing: $sidebarShowing)
-//                GeometryReader {_ in
-//                    ZStack {
-//                        NavigationStack {
-//                            SidebarPage(userSettings: viewModel.userSettings)
-//                        }
-//                    }
-//                    .ignoresSafeArea()
-//                    .frame(width: UIScreen.main.bounds.width * 0.7)
-//                    .offset(x: sidebarShowing ? 0 : -UIScreen.main.bounds.width)
-//                    .animation(.smooth, value: sidebarShowing)
-//                }
             }
         }
     }
@@ -138,8 +104,6 @@ struct SidebarPage: View {
                 
             }
         }
-//        .navigationTitle("Settings")
-
     }
 }
 

@@ -14,20 +14,20 @@ struct TasbeehPageView: View {
     
     @State private var currentIndex: Int = 0
     @State private var counter: Int = 3
+    @State private var hi: Int = 0
     
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
+            Color("Primarywhite").ignoresSafeArea()
             VStack(spacing: 20) {
-                // Show the current text
                 Spacer()
                 oneTasbeeh(card: viewModel.mathuratcards[currentIndex], userSettings: viewModel.userSettings)
                 
-                // Show the current count
                 Spacer()
                 Text("\(counter)")
                     .font(.title)
                     .padding()
+                Spacer()
                 
             }
         }
