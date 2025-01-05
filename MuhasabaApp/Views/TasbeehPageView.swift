@@ -13,8 +13,7 @@ struct TasbeehPageView: View {
     lazy var texts = viewModel.mathuratcards
     
     @State private var currentIndex: Int = 0
-    @State private var counter: Int = 3
-    @State private var hi: Int = 0
+    @State private var counter: Int = 0
     
     var body: some View {
         ZStack {
@@ -35,6 +34,9 @@ struct TasbeehPageView: View {
         .onTapGesture(count: 1) {handleTap()}
         .backgroundStyle(Color.blue)
         .padding()
+        .onAppear {
+            counter = viewModel.mathuratcards[currentIndex].count
+        }
     }
 
     
@@ -45,14 +47,17 @@ struct TasbeehPageView: View {
                 counter -= 1
             } else {
                 // If the counter would hit 0, reset it and move to the next text
-                counter = 3  // reset to starting value
+                  // reset to starting value
                 if currentIndex < viewModel.mathuratcards.count - 1 {
                     currentIndex += 1
+                    counter = viewModel.mathuratcards[currentIndex].count
                 } else {
                     // Optional: if you're at the last text, do something else,
                     // such as restarting or disabling the button.
                     // For now, let's just reset to the first text
                     currentIndex = 0
+                    counter = viewModel.mathuratcards[currentIndex].count
+                    
                 }
             }
         }

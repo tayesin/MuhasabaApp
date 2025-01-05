@@ -90,7 +90,7 @@ class ViewModel {
         newCard = MathuratCardData(arabicText: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وعلى آلِ سيِّدِنَا مُحَمَّد كَمَا صَلَّيتَ عَلَى سَيِّدِنَا إبرَاهِيمَ وعَلَى آلِ سَيِّدِنَا إبرَاهِيم وبَارِك عَلَى سَيِّدِنَا مُحَمَّدٍ وعَلَى آلِ سَيِّدِنَا مُحَمَّد كَمَا بَارَكتَ عَلَى سَيِّدِنَا إبرَاهِيمَ وعَلَى آلِ سَيِّدنَا إبرَاهِيمَ فِى العَالَمِينَ، إنَّكَ حَمِيدٌ مَجِيد", translation: "O Allah! Exalt and have mercy on Muhammad and on the family of Muhammad as You had mercy on Ibraheem and on the family of Ibraheem. And bless our master Muhammad and the family of our master Muhammad as You blessed our master Ibraheem and the family of our master iBraheem in this universe. Indeed, You are Gracious, Glorious")
         self.mathuratcards.append(newCard)
         
-        newCard = MathuratCardData(arabicText: "سُبحَانَ اللهِ والحَمدُ للهِ ولا إلَه إلَّا اللهُ واللهُ أَكبَر", translation: "Glory be to Allah; Praise is due to Allah; and there is no god but Allah and Allah is the greatest")
+        newCard = MathuratCardData(arabicText: "سُبحَانَ اللهِ والحَمدُ للهِ ولا إلَه إلَّا اللهُ واللهُ أَكبَر", translation: "Glory be to Allah; Praise is due to Allah; and there is no god but Allah and Allah is the greatest", count: 10)
         self.mathuratcards.append(newCard)
         
         newCard = MathuratCardData(arabicText: "لا إلَه إلَّا اللهُ وَحدَهُ لا شَرِيكَ لَه، لَهُ المُلكُ ولَهُ الحَمد، وهُوَ عَلَى كُلِّ شَئٍ قَدِير", translation: "There is no god but Allah alone. He has no partner. Sovereignty and Praise are His; and He is Omnipotent.")
@@ -99,10 +99,10 @@ class ViewModel {
         newCard = MathuratCardData(arabicText: "سُبحَانَكَ اللَّهُمَّ وبِحَمدِك، أَشهَدُ أَن لَا إلَه إلَّا أَنت، أَستَغفِرُكَ وأَتُوبُ إلَيك", translation: "Glory and all Praise be to you O Allah! I testify that there is no god but Your. I seek Your forgiveness and to You do I repent")
         self.mathuratcards.append(newCard)
         
-        newCard = MathuratCardData(arabicText: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ عبدكَ ونَبِيِّكَ ورَسُولِكَ النَبِيِّ الأُمِيِّ وعَلَى آلِهِ وصَحبِهِ وسَلِّم", translation: "O Allah! Exalt our master Muhammad, Your servant, Your Prophet, Your Messenger, the unlettered Prophet and on his family and companions")
+        newCard = MathuratCardData(arabicText: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ عبدكَ ونَبِيِّكَ ورَسُولِكَ النَبِيِّ الأُمِيِّ وعَلَى آلِهِ وصَحبِهِ وسَلِّم", translation: "O Allah! Exalt our master Muhammad, Your servant, Your Prophet, Your Messenger, the unlettered Prophet and on his family and companions", count: 1)
         self.mathuratcards.append(newCard)
         
-        newCard = MathuratCardData(arabicText: "سُبحَانَ رَبِّكَ رَبِّ العِزَّةِ عَمَّا يَصِفُون، وسَلَامٌ عَلَى المُرسَلِين، والحَمدُ للهِ رَبِّ العَالَمِين", translation: "Glory be to You O Lord! The Lord of Honor and Power, who is free from what they ascribe to Him. May peace be upon the messengers and all praise is due to Allah, the Lord and Sustainer of the worlds")
+        newCard = MathuratCardData(arabicText: "سُبحَانَ رَبِّكَ رَبِّ العِزَّةِ عَمَّا يَصِفُون، وسَلَامٌ عَلَى المُرسَلِين، والحَمدُ للهِ رَبِّ العَالَمِين", translation: "Glory be to You O Lord! The Lord of Honor and Power, who is free from what they ascribe to Him. May peace be upon the messengers and all praise is due to Allah, the Lord and Sustainer of the worlds", count: 1)
         self.mathuratcards.append(newCard)
     }
     
