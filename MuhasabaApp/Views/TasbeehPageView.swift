@@ -40,24 +40,16 @@ struct TasbeehPageView: View {
     }
 
     
-    // 3. Decrement the counter, switch text when it hits 0
          func handleTap() {
             if counter > 1 {
-                // Decrement the counter if it’s above 1
                 counter -= 1
             } else {
-                // If the counter would hit 0, reset it and move to the next text
-                  // reset to starting value
                 if currentIndex < viewModel.mathuratcards.count - 1 {
                     currentIndex += 1
                     counter = viewModel.mathuratcards[currentIndex].count
                 } else {
-                    // Optional: if you're at the last text, do something else,
-                    // such as restarting or disabling the button.
-                    // For now, let's just reset to the first text
                     currentIndex = 0
                     counter = viewModel.mathuratcards[currentIndex].count
-                    
                 }
             }
         }
