@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TablePage: View {
 //    @Environment(ViewModel.self) private var viewModel
+    
     @State private var timeRange: TimeRange = .day
     
     var body: some View {

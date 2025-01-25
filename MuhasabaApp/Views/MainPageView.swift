@@ -10,29 +10,23 @@ import SwiftUI
 struct MainPage: View {
     var view = ViewModel()
     var body: some View {
+        
+        
         TabView {
-            
-//            Text("Coming Soon")
-            TablePage()
-                .environment(view)
-                .tabItem {
-                    Image(systemName: "tablecells")
-                    Text("Muhasaba Table")
-                }
-//            
             MathuratPage()
                 .environment(view)
                 .tabItem {
                     Image("duahands.SFSymbol")
                     Text("Mathurat Duas")
                 }
-            
-//            Tab("Muhasaba Table", systemImage: "tablecells") {
-//                TablePage()
-//            }
-//            Tab("Mathurat Duas", Image: "duahands") {
-//                TablePage()
-//            }
+            Text("Coming Soon")
+//            TablePage()
+//                .environment(view)
+                .tabItem {
+                    Image(systemName: "tablecells")
+                    Text("Muhasaba Table")
+                }
+
         }
     }
 }
