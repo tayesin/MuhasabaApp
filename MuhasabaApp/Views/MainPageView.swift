@@ -13,20 +13,17 @@ struct MainPage: View {
         
         
         TabView {
+            TablePage()
+                .tabItem {
+                    Image(systemName: "tablecells")
+                    Text("Muhasaba Table")
+                }
             MathuratPage()
                 .environment(view)
                 .tabItem {
                     Image("duahands.SFSymbol")
                     Text("Mathurat Duas")
                 }
-            Text("Coming Soon")
-//            TablePage()
-//                .environment(view)
-                .tabItem {
-                    Image(systemName: "tablecells")
-                    Text("Muhasaba Table")
-                }
-
         }
     }
 }

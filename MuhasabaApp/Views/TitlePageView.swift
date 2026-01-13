@@ -9,6 +9,9 @@ import SwiftUI
 import SwiftData
 
 struct TitlePage: View {
+    
+    @Environment(\.modelContext) private var context
+    
     @State private var isActive = false
     @State private var size = 0.95
     @State private var opacity = 0.5

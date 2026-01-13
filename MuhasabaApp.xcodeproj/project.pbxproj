@@ -26,6 +26,7 @@
 		0F30EA322D151967007F4708 /* MathuratPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA312D151967007F4708 /* MathuratPageView.swift */; };
 		0F30EA342D151993007F4708 /* myColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA332D151993007F4708 /* myColors.swift */; };
 		0F30EA362D1519A6007F4708 /* TablePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30EA352D1519A6007F4708 /* TablePageView.swift */; };
+		0F7F706B2F1104B10020E392 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F706A2F1104A80020E392 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		0F30EA312D151967007F4708 /* MathuratPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathuratPageView.swift; sourceTree = "<group>"; };
 		0F30EA332D151993007F4708 /* myColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myColors.swift; sourceTree = "<group>"; };
 		0F30EA352D1519A6007F4708 /* TablePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablePageView.swift; sourceTree = "<group>"; };
+		0F7F706A2F1104A80020E392 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				0F30EA282D1518DB007F4708 /* Views */,
 				0F30E9F22D15171D007F4708 /* MuhasabaApp.swift */,
 				0F30EA2D2D151939007F4708 /* ViewModel.swift */,
+				0F7F706A2F1104A80020E392 /* Models.swift */,
 				0F30E9F62D151720007F4708 /* Assets.xcassets */,
 				0F30E9F82D151720007F4708 /* Preview Content */,
 			);
@@ -245,7 +248,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					0F30E9EE2D15171D007F4708 = {
 						CreatedOnToolsVersion = 15.2;
@@ -322,6 +325,7 @@
 				0F30EA302D151954007F4708 /* MathuratCardView.swift in Sources */,
 				0F30EA362D1519A6007F4708 /* TablePageView.swift in Sources */,
 				0F30EA2A2D1518F9007F4708 /* TitlePageView.swift in Sources */,
+				0F7F706B2F1104B10020E392 /* Models.swift in Sources */,
 				0F30EA2C2D15191E007F4708 /* MainPageView.swift in Sources */,
 				0F30E9F32D15171D007F4708 /* MuhasabaApp.swift in Sources */,
 				0F0866C02D17ACC3008E48DA /* TasbeehPageView.swift in Sources */,
@@ -396,6 +400,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = L685523BL9;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -419,6 +424,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -459,6 +465,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L685523BL9;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -475,6 +482,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -488,7 +496,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MuhasabaApp/Preview Content\"";
-				DEVELOPMENT_TEAM = L685523BL9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MuhasabaApp/Info.plist;
@@ -518,7 +525,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MuhasabaApp/Preview Content\"";
-				DEVELOPMENT_TEAM = L685523BL9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MuhasabaApp/Info.plist;
@@ -546,7 +552,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L685523BL9;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
@@ -565,7 +570,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L685523BL9;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
@@ -583,7 +587,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L685523BL9;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tayesin.MuhasabaAppUITests;
@@ -600,7 +603,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L685523BL9;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tayesin.MuhasabaAppUITests;

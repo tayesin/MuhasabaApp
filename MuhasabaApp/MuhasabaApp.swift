@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct MuhasabaApp: App {
@@ -13,5 +14,6 @@ struct MuhasabaApp: App {
         WindowGroup {
             TitlePage()
         }
+        .modelContainer(for: [Habit.self, AllHabits.self, DailySummary.self])
     }
 }

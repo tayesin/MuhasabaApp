@@ -163,11 +163,3 @@ class MathuratCardData: Identifiable {
     }
 }
 
-@Observable
-class Habits {
-    var habitName: String
-    
-    init(habitName: String = "") {
-        self.habitName = habitName
-    }
-}
