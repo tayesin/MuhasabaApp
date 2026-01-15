@@ -9,33 +9,43 @@ import Foundation
 import SwiftData
 
 @Model
+class Completion {
+    var dayKey: Int
+    var createdAt: Date
+
+    init(dayKey: Int, createdAt: Date = Date()) {
+        self.dayKey = dayKey
+        self.createdAt = createdAt
+    }
+}
+
+@Model
 class Habit {
     var habitName: String
     var id: String
-    /// "YYYYMMDD" → completed or not
-    var completedDays: [Int]
+
+    @Relationship(deleteRule: .cascade) var completions: [Completion]
 
     init(habitName: String = "") {
         self.id = UUID().uuidString
         self.habitName = habitName
-        self.completedDays = []
+        self.completions = []
+    }
+
+    func isCompleted(on date: Date = Date()) -> Bool {
+        let key = Self.dayKeyInt(from: date)
+        return completions.contains(where: { $0.dayKey == key })
     }
 
     func markCompleted(on date: Date = Date()) {
         let key = Self.dayKeyInt(from: date)
-        if !completedDays.contains(key) {
-            completedDays.append(key)
-            completedDays.sort()
-        }
-    }
-    
-    func markIncomplete(on date: Date = Date()) {
-        let key = Self.dayKeyInt(from: date)
-        completedDays.removeAll { $0 == key }
+        guard !isCompleted(on: date) else { return }
+        completions.append(Completion(dayKey: key))
     }
 
-    func isCompleted(on date: Date = Date()) -> Bool {
-        completedDays.contains(Self.dayKeyInt(from: date))
+    func markIncomplete(on date: Date = Date()) {
+        let key = Self.dayKeyInt(from: date)
+        completions.removeAll(where: { $0.dayKey == key })
     }
 
     private static func dayKeyInt(from date: Date) -> Int {
@@ -47,9 +57,9 @@ class Habit {
 
 @Model
 class AllHabits {
-    @Attribute(.unique) var singletonKey: String
+    @Attribute(.unique) var singletonKey: String?
     @Relationship(deleteRule: .cascade) var habits: [Habit]
-    
+
     init(habits: [Habit] = []) {
         self.singletonKey = "singleton"
         if habits.isEmpty {
@@ -71,7 +81,7 @@ class AllHabits {
 
 @Model
 class DailySummary {
-    @Attribute(.unique) var dayKey: Int   // YYYYMMDD
+    @Attribute(.unique) var dayKey: Int
     var completedCount: Int
     var totalCount: Int
 

@@ -14,6 +14,6 @@ struct MuhasabaApp: App {
         WindowGroup {
             TitlePage()
         }
-        .modelContainer(for: [Habit.self, AllHabits.self, DailySummary.self])
+        .modelContainer(for: [Habit.self, AllHabits.self, DailySummary.self, Completion.self])
     }
 }

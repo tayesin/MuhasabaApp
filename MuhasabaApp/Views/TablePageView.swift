@@ -111,7 +111,6 @@ struct DailyHabitView: View {
                 ProgressView()
             }
         }
-        .navigationTitle("Today")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
@@ -141,20 +140,17 @@ struct DailyHabitView: View {
 
     private func toggleToday(_ habit: Habit) {
         withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
-            if habit.isCompleted() {
-                habit.markIncomplete()
-            } else {
-                habit.markCompleted()
-            }
+            if habit.isCompleted() { habit.markIncomplete() }
+            else { habit.markCompleted() }
         }
 
         if let container = allHabits.first {
             updateDailySummary(for: Date(), container: container)
         }
 
-        do { try modelContext.save() } catch { print("Save failed:", error) }
+        try? modelContext.save()
     }
-    
+
     private func updateDailySummary(for date: Date, container: AllHabits) {
         let key = dayKeyInt(from: date)
 
@@ -163,35 +159,42 @@ struct DailyHabitView: View {
             acc + (h.isCompleted(on: date) ? 1 : 0)
         }
 
-        // Find existing summary for the dayKey
         let descriptor = FetchDescriptor<DailySummary>(
             predicate: #Predicate { $0.dayKey == key }
         )
 
-        do {
-            if let existing = try modelContext.fetch(descriptor).first {
-                existing.completedCount = completed
-                existing.totalCount = total
-            } else {
-                modelContext.insert(DailySummary(dayKey: key,
-                                                completedCount: completed,
-                                                totalCount: total))
-            }
-        } catch {
-            print("DailySummary fetch/update failed:", error)
+        if let existing = try? modelContext.fetch(descriptor).first {
+            existing.completedCount = completed
+            existing.totalCount = total
+        } else {
+            modelContext.insert(DailySummary(dayKey: key, completedCount: completed, totalCount: total))
         }
     }
 
+    private func dayKeyInt(from date: Date, calendar: Calendar = .current) -> Int {
+        let c = calendar.dateComponents([.year, .month, .day], from: date)
+        return (c.year! * 10_000) + (c.month! * 100) + c.day!
+    }
+
+
     private func deleteHabits(container: AllHabits, sortedHabits: [Habit], offsets: IndexSet) {
+        // delete all selected habits first
         for index in offsets {
             let habit = sortedHabits[index]
-            // remove from relationship list
             container.habits.removeAll { $0.id == habit.id }
-            // delete the object
             modelContext.delete(habit)
         }
-        try? modelContext.save()
+
+        // update summary once after deletions
+        updateDailySummary(for: Date(), container: container)
+
+        do {
+            try modelContext.save()
+        } catch {
+            print("Delete save failed:", error)
+        }
     }
+
 
     private var addHabitSheet: some View {
         NavigationStack {
@@ -221,20 +224,29 @@ struct DailyHabitView: View {
     private func addHabit() {
         guard let container = allHabits.first else { return }
         let name = newHabitName.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty else { return }
 
-        // Optional: prevent duplicates by name
+        // prevent duplicates by name
         if container.habits.contains(where: { $0.habitName.caseInsensitiveCompare(name) == .orderedSame }) {
             return
         }
 
         let habit = Habit(habitName: name)
         container.habits.append(habit)
-        modelContext.insert(habit)
+        modelContext.insert(habit) // okay to keep
+
+        updateDailySummary(for: Date(), container: container)
+
+        do {
+            try modelContext.save()
+        } catch {
+            print("Save failed:", error)
+        }
 
         newHabitName = ""
         showingAdd = false
-        try? modelContext.save()
     }
+
 
     private func seedIfNeeded() {
         guard !didSeed else { return }
@@ -398,32 +410,54 @@ struct MonthlyHeatmapView: View {
     @Query private var allHabits: [AllHabits]
 
     @State private var didSeed = false
-    @State private var month: Date = Date()  // current month
+    @State private var month: Date = Date()
+    @State private var summaries: [DailySummary] = []
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 7)
 
     var body: some View {
         let calendar = Calendar.current
         let monthStart = startOfMonth(for: month, calendar: calendar)
+        let days = daysInMonth(for: monthStart, calendar: calendar)
+        let firstWeekdayIndex = calendar.component(.weekday, from: monthStart) - 1 // Sunday=0..Saturday=6
+        let totalCells = firstWeekdayIndex + days
+
+        // dayKey -> score
+        let scoreByKey: [Int: Double] = Dictionary(
+            uniqueKeysWithValues: summaries.map { ($0.dayKey, $0.score) }
+        )
 
         VStack(alignment: .leading, spacing: 12) {
             header(monthStart: monthStart, calendar: calendar)
             weekdayHeader()
 
-            if let container = allHabits.first {
-                let totalHabits = container.habits.count
-                if totalHabits == 0 {
-                    ContentUnavailableView("No habits yet", systemImage: "list.bullet")
-                } else {
-                    heatmapGrid(container: container, monthStart: monthStart, calendar: calendar)
-                    legend()
+            if let container = allHabits.first, container.habits.count > 0 {
+                LazyVGrid(columns: columns, spacing: 8) {
+                    ForEach(0..<totalCells, id: \.self) { i in
+                        if i < firstWeekdayIndex {
+                            Color.clear.frame(height: 28)
+                        } else {
+                            let day = i - firstWeekdayIndex + 1
+                            let date = calendar.date(byAdding: .day, value: day - 1, to: monthStart)!
+                            let key = dayKeyInt(from: date, calendar: calendar)
+                            let score = scoreByKey[key] ?? 0
+
+                            HeatCell(day: day, score: score)
+                                .accessibilityLabel("\(date.formatted(date: .abbreviated, time: .omitted)), \(Int(score * 100))%")
+                        }
+                    }
                 }
+
+                legend()
+            } else if allHabits.first != nil {
+                ContentUnavailableView("No habits yet", systemImage: "list.bullet")
             } else {
                 ProgressView()
             }
         }
         .padding()
         .task { seedIfNeeded() }
+        .task(id: monthStart) { fetchSummariesForMonth(monthStart: monthStart, calendar: calendar) }
     }
 
     // MARK: - Header
@@ -457,7 +491,6 @@ struct MonthlyHeatmapView: View {
     }
 
     private func weekdayHeader() -> some View {
-        // You can change order to start Monday if you want; just keep it consistent with offset calc below.
         let labels = ["S","M","T","W","T","F","S"]
         return HStack {
             ForEach(labels.indices, id: \.self) { i in
@@ -469,68 +502,57 @@ struct MonthlyHeatmapView: View {
         }
     }
 
-    // MARK: - Grid
-
-    private func heatmapGrid(container: AllHabits, monthStart: Date, calendar: Calendar) -> some View {
-        let days = daysInMonth(for: monthStart, calendar: calendar)
-        let firstWeekdayIndex = calendar.component(.weekday, from: monthStart) - 1 // Sunday=0 ... Saturday=6
-
-        // total cells = leading blanks + month days
-        let totalCells = firstWeekdayIndex + days
-
-        return LazyVGrid(columns: columns, spacing: 8) {
-            ForEach(0..<totalCells, id: \.self) { i in
-                if i < firstWeekdayIndex {
-                    Color.clear
-                        .frame(height: 28)
-                } else {
-                    let day = i - firstWeekdayIndex + 1
-                    let date = calendar.date(byAdding: .day, value: day - 1, to: monthStart)!
-                    let score = dayScore(container: container, on: date, calendar: calendar)
-
-                    HeatCell(day: day, score: score)
-                        .accessibilityLabel("\(date.formatted(date: .abbreviated, time: .omitted)), \(Int(score * 100))%")
-                }
-            }
-        }
-    }
-
-    // MARK: - Scoring
-
-    private func dayScore(container: AllHabits, on date: Date, calendar: Calendar) -> Double {
-        let total = container.habits.count
-        guard total > 0 else { return 0 }
-
-        let key = dayKeyInt(from: date, calendar: calendar)
-        let completed = container.habits.reduce(0) { acc, habit in
-            acc + (habit.completedDays.contains(key) ? 1 : 0)
-        }
-
-        return Double(completed) / Double(total) // 0...1
-    }
-
     // MARK: - Legend
 
     private func legend() -> some View {
-        HStack(spacing: 8) {
-            Text("Less")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-
-            ForEach([0.0, 0.25, 0.5, 0.75, 1.0], id: \.self) { v in
-                RoundedRectangle(cornerRadius: 6)
-                    .frame(width: 18, height: 18)
-                    .foregroundStyle(heatColor(score: v))
-                    .overlay(RoundedRectangle(cornerRadius: 6).stroke(.secondary.opacity(0.15), lineWidth: 1))
+        ZStack() {
+            HStack(spacing: 8) {
+                Text("Less").font(.caption).foregroundStyle(.secondary)
+                ForEach([0.0, 0.25, 0.5, 0.75, 1.0], id: \.self) { v in
+                    RoundedRectangle(cornerRadius: 6)
+                        .frame(width: 18, height: 18)
+                        .foregroundStyle(.white)
+                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(.secondary, lineWidth: 1))
+                }
+                Text("More").font(.caption).foregroundStyle(.secondary)
+                Spacer()
             }
-
-            Text("More")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-
-            Spacer()
+            .padding(.top, 6)
+            HStack(spacing: 8) {
+                Text("Less").font(.caption).foregroundStyle(.secondary)
+                ForEach([0.0, 0.25, 0.5, 0.75, 1.0], id: \.self) { v in
+                    RoundedRectangle(cornerRadius: 6)
+                        .frame(width: 18, height: 18)
+                        .foregroundStyle(heatColor(score: v))
+                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(.secondary.opacity(0.15), lineWidth: 1))
+                }
+                Text("More").font(.caption).foregroundStyle(.secondary)
+                Spacer()
+            }
+            .padding(.top, 6)
         }
-        .padding(.top, 6)
+    }
+
+    // MARK: - Fetch
+
+    private func fetchSummariesForMonth(monthStart: Date, calendar: Calendar) {
+        let nextMonthStart = calendar.date(byAdding: .month, value: 1, to: monthStart)!
+        let lastDay = calendar.date(byAdding: .day, value: -1, to: nextMonthStart)!
+
+        let startKey = dayKeyInt(from: monthStart, calendar: calendar)
+        let endKey = dayKeyInt(from: lastDay, calendar: calendar)
+
+        let descriptor = FetchDescriptor<DailySummary>(
+            predicate: #Predicate { $0.dayKey >= startKey && $0.dayKey <= endKey },
+            sortBy: [SortDescriptor(\.dayKey)]
+        )
+
+        do {
+            summaries = try modelContext.fetch(descriptor)
+        } catch {
+            print("Fetch DailySummary failed:", error)
+            summaries = []
+        }
     }
 
     // MARK: - Seeding
@@ -546,12 +568,16 @@ struct MonthlyHeatmapView: View {
     }
 }
 
+
 private struct HeatCell: View {
     let day: Int
     let score: Double
 
     var body: some View {
         ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .foregroundStyle(.white)
+                .overlay(RoundedRectangle(cornerRadius: 8).stroke(.secondary, lineWidth: 1))
             RoundedRectangle(cornerRadius: 8)
                 .foregroundStyle(heatColor(score: score))
                 .overlay(RoundedRectangle(cornerRadius: 8).stroke(.secondary.opacity(0.15), lineWidth: 1))
@@ -576,8 +602,6 @@ private func heatColor(score: Double) -> Color {
     default: return Color(myColors().UCLABlue)
     }
 }
-
-
 
 struct ProgressBar: View {
     let percentage: Float

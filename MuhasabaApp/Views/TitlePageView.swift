@@ -32,7 +32,7 @@ struct TitlePage: View {
                 .scaleEffect(size)
                 .opacity(opacity)
                 .onAppear {
-                    withAnimation(.easeIn(duration: 0.7)) {
+                    withAnimation(.easeIn(duration: 0.4)) {
                         self.size = 1.0
                         self.opacity = 1.0
                     }
