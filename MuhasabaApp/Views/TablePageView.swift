@@ -86,7 +86,7 @@ struct DailyHabitView: View {
             ProgressBar(percentage: percentage)
 
             if let container = allHabits.first {
-                let habits = container.habits.sorted { $0.habitName < $1.habitName }
+                let habits = container.habits.sorted { ($0.order) < ($1.order) }
 
                 List {
                     ForEach(habits, id: \.id) { habit in
@@ -103,6 +103,8 @@ struct DailyHabitView: View {
                         }
                         .padding(.vertical, 4)
                     }
+                    .onMove { source, destination in
+                        moveHabits(in: container, from: source, to: destination) }
                     .onDelete { offsets in
                         deleteHabits(container: container, sortedHabits: habits, offsets: offsets)
                     }
@@ -137,6 +139,23 @@ struct DailyHabitView: View {
         let done = container.habits.filter { $0.isCompleted() }.count
         return Float(done) / Float(total)
     }
+    
+    private func moveHabits(in container: AllHabits, from source: IndexSet, to destination: Int) {
+        // Start from the same order the List is showing
+        var ordered = container.habits.sorted { ($0.order) < ($1.order) }
+
+        // Apply the move to that displayed order
+        ordered.move(fromOffsets: source, toOffset: destination)
+
+        // Persist the new order
+        for (index, habit) in ordered.enumerated() {
+            habit.order = index
+        }
+
+        // No need to reorder container.habits itself; UI sorts by 'order'
+        try? modelContext.save()
+    }
+
 
     private func toggleToday(_ habit: Habit) {
         withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
@@ -185,6 +204,12 @@ struct DailyHabitView: View {
             modelContext.delete(habit)
         }
 
+        // reorder habits array
+        let reordered = container.habits.sorted { ($0.order) < ($1.order) }
+        for (i, h) in reordered.enumerated() {
+            h.order = i
+        }
+        
         // update summary once after deletions
         updateDailySummary(for: Date(), container: container)
 
@@ -231,9 +256,9 @@ struct DailyHabitView: View {
             return
         }
 
-        let habit = Habit(habitName: name)
+        let habit = Habit(habitName: name, order: container.habits.count)
         container.habits.append(habit)
-        modelContext.insert(habit) // okay to keep
+        modelContext.insert(habit)
 
         updateDailySummary(for: Date(), container: container)
 
@@ -287,7 +312,7 @@ struct WeeklyHabitView: View {
             headerRow()
 
             if let container = allHabits.first {
-                let habits = container.habits.sorted { $0.habitName < $1.habitName }
+                let habits = container.habits.sorted { ($0.order) < ($1.order) }
 
                 if habits.isEmpty {
                     ContentUnavailableView("No habits yet", systemImage: "list.bullet")
